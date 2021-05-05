@@ -1,0 +1,552 @@
+curso javascript
+
+todo comando js(javascript) deve ser inserido dentro de uma tag <script></script>
+
+COMANDOS
+
+- mostrar uma msg em forma de caixa de texto
+	 alert("Hello Wolrd");
+
+- importar um script de um outro arquivo
+
+	<script src= "scripts/scripts01.js">
+	</script>
+
+- mostrar mensagem pelo console
+	Console.log("Olá Mundo");
+
+VARIÁVEIS
+
+exemplo:
+
+   var latitude=40.87663;
+
+   var longitude=-8.08373;
+
+   var hello =" Olá mundo @@@@";
+
+   alert(hello);
+
+VARIAVEIS NULL E UNDEFINED
+
+NULL ~> Variáveis que não possuem valor
+
+ex: var n1;
+
+TRABALHANDO COM DOM
+
+getElementById("nome do id da tag div html").innerHTML;
+
+
+
+FUNÇÕES
+
+
+
+// função sem passar argumento
+function hellowolrd(){
+    console.log("Olá Mundo");
+}
+
+function soma(){
+    var n1= 1045;
+    var n2 =909;
+    var soma=(n1+n2);
+    
+    console.log(soma);
+
+}
+hellowolrd();
+
+soma();
+
+//função passando argumentos
+
+function soma_args(num1,num2){
+    soma=num1+num2;
+
+    console.log(soma);
+
+}
+
+
+soma_args(78,87);
+
+//função com retorno
+
+
+function soma_retorno(num1, num2){
+    soma=num1+num2;
+
+    return soma;
+
+
+}
+
+console.log(soma_retorno(12,56));
+
+
+
+var kg = document.getElementById("peso").innerHTML;
+
+var alt = document.getElementById("altura").innerHTML;
+
+
+function calculo(peso,altura){
+
+    imc= peso / (altura *altura);
+
+    return imc;
+}
+
+document.getElementById("resultado").innerHTML = calculo(kg,alt).toFixed(2);
+
+
+Tipos de dados ARRAY
+
+
+
+
+var num = [0,1,2];
+
+console.log(num);
+
+// remove o último elemento de um array
+
+num.pop();
+
+console.log(num);
+
+// adiciona um elemento a partir do último elemento de um array
+
+num.push(3,4,5);
+
+console.log(num);
+
+
+// remove o primeiro elemento de uma array
+
+num.shift();
+
+console.log(num);
+
+
+// adiciona o primeiro elemento no array
+
+num.unshift(70);
+
+console.log(num);
+
+//mudando valores de um array
+
+var exe = [1,2,3];
+
+exe[1] = 65;
+
+console.log(exe);
+
+// selecionando intervalos em um vetor
+
+var exe1 = [0,1,2,3,4,5,6,7,8,9];
+
+exe1.slice(0,3)
+
+console.log(exe1.slice(0,5));
+
+Tipos de dados
+
+
+var cadastro ={
+    "nome":"victor",
+    "idade": 23,
+    "nasc": 1977
+}
+
+console.log(cadastro);
+
+cadastro={
+
+    "nome":"maria",
+    "idade": 34,
+    "nasc": 1996
+}
+
+console.log(cadastro);
+
+
+var cursos = [
+    {
+        'titulo': 'Aprenda programação em Python 3 com facilidade do zero',
+        'avaliacoes': 680,
+        'alunos': 2300,
+        'categorias': ['programacao', 'tecnologia']
+    },
+
+    {
+        'titulo': 'Aprenda PHP e faça sites dinâmicos',
+        'avaliacoes': 180,
+        'alunos': 350,
+        'categorias': ['desenvolvimento web', 'programacao']
+    },
+
+    {
+        'titulo': 'Excel do Zero ao Avançado',
+        'avaliacoes': 420,
+        'alunos': 1800,
+        'categorias': ['produtividade', 'gestão']
+    }
+    
+];
+document.getElementById("tabela").innerHTML = cursos;
+
+// acessando o elemento "desenvolvimento web"
+
+
+console.log(cursos[1].categorias[0]);
+
+
+// alterar a informação "gestão" nas catergorias de excel
+
+cursos[2].categorias[1]="administração de empresas"
+console.log(cursos);
+
+Métodos de Objetos
+
+var nome = {
+    "nome":"victor",
+    "sobrenome":"costa",
+    "nome_completo": function(){
+        var_completo =this.nome + ' '+ this.sobrenome;
+        return var_completo;
+
+    }
+
+}
+
+console.log(nome.nome_completo());
+
+var relatorio = {
+    "nome":"bia",
+    "salario":4.000,
+
+    "relcom":function(){
+        relcom = this.nome + " " + this.salario;
+
+        return relcom;
+
+    }
+
+}
+
+var ex3 = {
+
+    "id" : "000",
+    "nome": "victor",
+    "ano_nasc":1999,
+
+    "idade": function(){
+        var ano =2020;
+        var idade = (ano-this.ano_nasc);
+
+        console.log("id:" + this.id + " nome:" + this.nome + " data de nascimento:"+ this.ano_nasc +" idade:"+ idade);
+
+        return idade;
+        
+    }
+
+
+}
+
+console.log(ex3.idade());
+
+EVENTOS
+// on click
+
+document.getElementById("click1").onclick = function(){
+
+    alert('Você clicou no botão');
+};
+
+// onmouseover
+document.getElementById("click2").onmouseover = function(){
+    alert("Você passou o mouse no botão");
+};
+
+//onmouseout
+document.getElementById("click3").onmouseout = function(){
+    alert("Você retirou o mouse do botão");
+
+};
+
+//onkeydown
+
+document.onkeydown = function(){
+    alert("Você apertou alguma tecla");
+};
+
+document.onkeydown = function(event){
+    alert('Você apertou a tecla: ' + event.keyCode);
+}
+
+
+function mouse_click(){
+
+    alert("clicou");
+}
+   Manipulando CSS
+
+
+    document.getElementById("mudar_cor").onclick = function(){
+        //mudar o tamanho
+        // document.getElementById("mudar_cor").style.height ="100px";
+         this.style.height ="100px";
+
+        // mudar a cor
+        // document.getElementById("mudar_cor").style['background-color']="#acffda";
+         this.style['background-color']="#acffda";
+
+        // mudando o botão para a direita
+        //document.getElementById("mudar_cor").style.transform = "translatex(100px)";
+        this.style.transform = "translatex(100px)";
+
+    }
+	Outros elementos getElement
+
+    
+        var btn = document.getElementsByClassName("botao");
+
+        //acessando elementos da classename
+        btn[0].innerHTML = "trocar";
+        console.log(btn);
+
+        //acessando elementos pela tag
+
+
+        var exemplo = document.getElementsByTagName("p");
+
+        console.log(exemplo);
+
+        //FOR/IN
+        
+
+        var carro = {
+            "ano":2018,
+            "modelo":"Fox",
+            "cilindradas": "1.8",
+            "Combustível":"Gasolina"
+        }
+
+        for( var x in carro){
+
+            console.log( x + ":" + carro[x]);
+        }
+
+       var exemplo= document.getElementsByClassName("p");
+
+       console.log(exemplo);
+
+       for(var x = 0; x < exemplo.length; x ++){
+           exemplo[x].style.color="green";
+           exemplo[x].style['font-weight']="bold";
+       }
+	
+	LOOP WHILE/ DO WHILE
+       
+       
+       var count = 0;
+
+       while (count < 5 ){
+           console.log(count);
+
+           count ++;
+       }
+
+       DO WHILE
+    
+       
+       var count=10;
+
+       do{
+        console.log(count);
+
+        count ++;
+
+       }while(count <5);
+
+       
+       
+
+    
+
+*/
+
+	// sessão 04
+	
+	/*
+  BOM
+
+ window.onmousemove = function(e){
+    console.log("mouse move");
+
+    // pageY - distancia do mouse para o topo do navegador
+        console.log('eixo y: ' + e.pageY) ;
+
+    // pageX - distancia do mouse para o lado esquerdo do navegador
+        console.log('eixo x: ' + e.pageX);
+
+    //criando pop up
+        if(e.pageY < 5){
+            alert(" Não saia !!");
+        }
+        if(e.pageX > 1372){
+            alert("Não saia !!!");
+        }
+
+  
+
+    };
+
+    propriedade localstorage = propriedade qdo objeto window que pode armazenar
+    dados no computador, memso que ele saia do site
+
+
+    //window.localStorage.setItem("nome","joao");
+
+    console.log(localStorage["nome"]);
+
+    // removendo uma informação do storage
+
+    localStorage.removeItem("nome");
+    
+    // exemplo formulario
+    
+
+    document.getElementById("enviar").onclick = function(){
+
+        // guardando o nome digitado em localstorage
+        var nome = document.getElementById("nome-usuario").value;
+        window.localStorage.setItem("nome", nome);
+        alert("cadastrado");
+
+        //ocultar
+        document.getElementById("nome-usuario").style.display = "none";
+        document.getElementById("enviar").style.display = "none";
+
+        //mostrar
+        document.getElementById("welcome").style.display = "initial";
+
+        // inserir texto
+        document.getElementById("text").innerHTML = "ola " + nome + " seja bem-vindo!!!";
+
+        // inserir span
+
+        document.getElementById("verif").innerHTML = "nao eh " + nome + " ?";
+    }
+    //console.log(localStorage["nome"]);
+    // verifica se há algum storage cadastrado
+    if (window.localStorage.nome){
+
+        //ocultar
+        document.getElementById("nome-usuario").style.display = "none";
+
+        //mostrar
+        document.getElementById("welcome").style.display = "initial";
+
+        // inserir texto
+        document.getElementById("text").innerHTML = "olá " + localStorage.nome + " seja bem-vindo!!!";
+        document.getElementById("verif").innerHTML = "nao eh " + localStorage.nome + " ?";
+
+    }
+    
+    document.getElementById("verif").onclick = function(){
+        // remover elemento
+        window.localStorage.removeItem("nome");
+
+        //ocultar boas-vindas
+        document.getElementById("welcome").style.display = "none";
+
+        //mostrar formulario
+        document.getElementById("nome-usuario").style.display = "initial";
+        document.getElementById("enviar").style.display = "initial";
+
+
+        
+    }
+
+// aula 26 - data e hora
+    
+    // criando um objeto date
+    var data = new Date();
+
+    console.log(data);
+
+    //passando argumentos no objeto
+
+    var data1 = new Date(2019,10,13);
+
+
+
+    // utilizando condições com date
+
+    if(data1.getMonth() <=6){
+        console.log("Estamos no Primeiro semestre: Mes: " + data1.getMonth());
+    }else{
+        console.log("Estamos no segundo semestre: Mes:  " + data1.getMonth());
+
+    }
+
+    //calculando data de nascimento
+
+ 
+    var nascimento = new Date("1998-05-18");
+
+    var hoje = new Date().getFullYear();
+
+    //var idade
+    console.log(nascimento.getFullYear());
+    console.log("nascimento: "+(hoje-nascimento.getFullYear()));
+
+    calculando milisegundos
+    
+
+    var data = new Date();
+
+    console.log(data.getTime() / 31536000000);
+
+    */ 
+   //exemplo quantos dias se passou
+
+    var datasaida= (new Date("2018-03-20").getTime() / 86400000);
+
+    var dataentrega= (new Date("2018-04-06").getTime() / 86400000);
+
+    var qtddias = (dataentrega - datasaida);
+
+
+    document.getElementById("entrega").innerHTML= qtddias + " dias";
+
+
+    console.log(datasaida);
+
+    console.log(dataentrega);
+
+    // exemplo validade do certificado
+    var certificado = (new Date("2020/10/12").getTime()/31536000000);
+
+
+    var hoje = (new Date().getTime()/31536000000)
+
+    var verificar = (hoje-certificado);
+
+    if(verificar >= 1){
+        console.log("certificado com data de validade vencida");
+    }else{
+        console.log("certificado ok");
+    }
+
+    console.log(verificar);
+
+    */
+
+	
+

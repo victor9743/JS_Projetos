@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>curso javascript - modulo 05</title>
+    <style>
+        .normal{
+            padding: 20px;
+            font-size: 18px;
+            background-color: yellow;
+        }
+
+        .styling{
+            padding: 60px;
+            font-size:22px;
+            font-weight: bold;
+            color: white;
+            background-color: black;
+            width: 200px;
+            border-radius: 60px;
+        }
+    </style>
+</head>
+<body>
+<!--
+        Jquery - sintaxe
+
+    
+    <div id ="hellowolrd"></div>
+
+    <br>
+    <div class="exemplo">
+        <button>1</button><br>
+        <button>2</button><br>
+        <button>3</button>
+    </div>
+    <br>
+
+    <button id="btn">Esconder</button> |
+    
+    <button id="btn1">Mostrar</button>
+
+    manipulação de elementos em html com jquery
+
+    <p id = "paragrafo_1">
+        Exemplo de como manipulamos uma tag HTML usando jquery
+    </p>
+
+    <a id="paragrafo-link" href="http://www.google.com.br" >exemplo de link usando jquery</a>
+
+    mudando imagem usando Jquery
+
+    <img src="data:image/png;base64,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" id="imagem" ></img>
+
+    <button id="mudar">Mudar</button>
+
+    empty | remove
+
+    <p id ="paragrafo_02">
+        Um exemplo utilizando o comando empty
+
+    </p>
+
+    <p id ="paragrafo_03">
+        Um exemplo utilizando o comando remove
+    </p>
+
+    Loop Each
+
+    <ul id="loop">
+        <li>Desenvolvimento Front End</li>
+        <li>Desenvolvimento Back End</li>
+        <li>UX Design</li>
+        <li>Design Gráfico</li>
+      
+
+    </ul>
+
+    Formulário em JQuery
+
+
+
+    <input id="nome" type="text" value="victor">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <form>
+
+        <select id="options">
+            <option value="opt1">Ouro</option>
+            <option value="opt2">Prata</option>
+            <option value="opt3">Bronze</option>
+        </select>
+
+    </form>
+    <br>
+    <br>
+    <br>
+
+    <form>
+        <span><input type="radio"  name="genero" value="M" checked>Masculino</input></span>
+        <span><input type="radio" name="genero" value="F">Feminino</input></span>
+    </form>
+
+    <form>
+        <span>
+            <input type ="checkbox" name="interesse" value="DFE">
+                Desenvolvimento Front-End
+            
+        </span>
+        <br>
+        <span>
+            <input type ="checkbox" name="interesse" value="DFE">
+                Desenvolvimento Back-End
+        </span>
+        <br>
+        <span>
+            <input type="checkbox" name="interesse" value="Design">
+                Design
+        </span>
+    </form>
+
+    <div class="exemplo">
+        exemplo, de como manipulamos o css com JQuery
+    </div>
+
+   
+
+
+    <p class="normal" id="paragrafo-classes">
+        Esse primeiro paragrafo tem a classe "normal". Vamos adicionar a ele a classe
+        "styling" e ver o que acontece
+    </p>
+    <button id="adicionar_classe">Adicionar Classe</button>
+    <button id="remover_classe">Remover Classe</button>
+    <button id="alternar_classe">Alternar Classe</button>
+
+    Eventos
+
+
+
+    <input id="nome" type="text" placeholder="Nome ...">
+
+    <button style="display: none" id="confirmar">Confirmar</button>
+
+    <button id="esconder">Esconder</button>
+
+
+
+    <h4 style="display: none" id="texto-escondido">O botão foi escondido</h4>
+
+    Evento toglee
+
+    
+<div class="tabs">
+
+    <div class="title-area">
+        <div id="tab-title">Título da aba</div>
+        <div id="toggle-tab"> 
+           
+            <svg width="14px" height="9px" viewBox="0 0 14 9" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                    <g id="Tutorial_800" transform="translate(-392.000000, -1170.000000)" fill-rule="nonzero" stroke="#FFFFFF" stroke-width="2">
+                        <g id="Group-2" transform="translate(320.000000, 1158.000000)">
+                            <polyline id="Path-3" points="73 19.2603762 79.1481559 13 85 19.2603762"></polyline>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+
+        </div>
+        
+    </div>
+
+    <div id="tab-content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut congue metus mi, a sodales elit blandit in. 
+            Pellentesque mattis sem vitae diam aliquet gravida. Nulla eu elit non lorem faucibus egestas vitae ac tortor.
+    </div>
+
+
+</div>
+
+    Animate
+
+
+-->
+<button id="animar">Aumentar quadrado</button>
+
+<button id="animar1">Diminuir quadrado</button>
+
+<br>
+
+<div id="quadrado" style="color:white; font-size: 18px; margin-top: 30px; width: 60px; height: 60px; background-color: black"></div>
+
+
+<br>
+
+<div id="life" style="color:white; font-size: 18px; margin-top: 30px; width: 300px; height: 10px; background-color: green"></div>
+
+<br>
+<button id="plus">Aumentar Life</button>
+<button id="minus">Diminuir Life</button>
+
+
+
+
+    <script src="scripts/sessao05.js"></script>
+</body>
+</html>

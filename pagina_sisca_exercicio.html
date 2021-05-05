@@ -1,0 +1,411 @@
+<html>
+    <head>
+        <script src="scripts/jquery-3.5.1.min.js"></script>
+
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <div class="col-md-12">
+            <div class="container-fluid" style="margin-top: -10px">
+            <div class="control-group col-md-12">
+            <h4>Informações da Movimentação de Ato</h4>
+            <br>
+            </div>
+
+            <div class="header">
+                <p>Preencha o formulário abaixo</p>
+                </div>
+            </div>
+
+            
+
+            <!--Código do ato -->
+            <input name="movimentacao[selo_digital]" type="hidden" value="0"><input style="display: none" type="checkbox" value="1" checked="checked" name="movimentacao[selo_digital]" id="movimentacao_selo_digital">
+            <hr>
+            <div class="container-fluid">
+            <div class="control-group col-md-2 col-sm-6">
+            <label class="control-label" for="codigo_ato">Código do Ato *</label>
+            <div class="controls">
+            <input type="text" name="codigo_ato" id="codigo_ato" class="form-control" required="required" autofocus="autofocus" maxlength="6">
+            </div>
+
+            </div>
+            <!-- Tipo de selo -->
+            <div class="control-group col-md-4 col-sm-6">
+            <label class="control-label" for="tipo_selo_id">Tipo de Selo</label>
+            <div class="controls">
+            <select class="form-control" required="required" name="movimentacao[tipo_selo_id]" id="movimentacao_tipo_selo_id"><option value=""></option>
+            <option selected="selected" ></option></select>
+            </div>
+            </div>
+
+            <!-- Descrição do ato-->
+            <div class="control-group col-md-6 col-sm-6">
+            <label class="control-label" for="tipo_ato_desc">Descrição do Ato</label>
+            <div class="controls">
+            <input type="text" name="tipo_ato_desc" id="tipo_ato_desc" class="form-control" required="required" readonly="readonly">
+            </div>
+            </div>
+            </div>
+            <div class="container-fluid deducao" style="display: none;">
+            <div class="control-group col-md-6 col-sm-6">
+            <label class="control-label" for="tipo_deducao_id">Tipo de Dedução</label>
+            <div class="controls">
+            <select class="form-control" name="movimentacao[tipo_deducao_id]" id="movimentacao_tipo_deducao_id">
+            </select>
+            </div>
+            </div>
+            </div>
+            <div class="movimentacao-form col-md-6">
+            <div class="row">
+            <div class="container-fluid">
+            <div class="control-group col-md-4 col-sm-6">
+            <label class="control-label" data-original-title="Data em que o ato foi registrado. Data que o ato foi praticado (deve ser um dia util (2 a 6 feira)." rel="tooltip-top" for="movimentacao_data_praticado">Data Praticado *</label>
+            <div class="controls input-group" id="datepicker">
+            <input class="form-control" type="date" name="movimentacao[data_praticado]" id="movimentacao_data_praticado">
+            <span class="add-on input-group-addon">
+            <!--<id class="material-icons icon-calendar">date_range</i>-->
+            </span>
+            </div>
+            </div>
+
+            <!-- Ato gratuito -->
+            <div class="control-group col-md-4 col-sm-6">
+            <label class="control-label" for="movimentacao_tipo_movimentacao_id">Ato Gratuito ? *</label>
+            <div class="controls">
+            <input name="movimentacao[tipo_movimentacao_id]" type="hidden" value=""><input style="width: 25px; height: 25px" type="checkbox" value="3" name="movimentacao[tipo_movimentacao_id]" id="movimentacao_tipo_movimentacao_id">
+            </div>
+            </div>
+            </div>
+
+            <!-- Quantidade de atos-->
+            <div class="container-fluid">
+            <div class="control-group col-md-4 col-sm-6 selo_fisico" style="display: none;">
+            <label class="control-label" data-original-title="Quantidade dos atos que foram movimentados." for="movimentacao_quantidade_atos">Quant de Atos *</label>
+            <div class="controls">
+            <input class="form-control" min="1" required="required" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" type="number" value="1" name="movimentacao[quantidade_atos]" id="movimentacao_quantidade_atos">
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6 tipo_ato_1010_3009_3021">
+            <label class="control-label" data-original-title="Quantidade de extras de atos. Somente para os atos 001010, 003009 ou 003021." for="movimentacao_quantidade_extra">Quant Extra de Atos *</label>
+            <div class="controls">
+            <input class="form-control" min="0" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" type="number" value="0" name="movimentacao[quantidade_extra]" id="movimentacao_quantidade_extra">
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6 nr_outorgantes" style="display: none;">
+            <label class="control-label" data-original-title="Quantidade de Outorgantes." for="nr_outorgantes">Nº Outorgantes</label>
+            <div class="controls">
+            <input class="form-control" min="0" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="9" max="999999999" size="9" type="number" name="movimentacao[nr_outorgantes]" id="movimentacao_nr_outorgantes">
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6 selo_pendente">
+            <label class="control-label" data-original-title="Identifica que o selo se sera aplicado no documento posteriormente. Ato com &quot;Selo Pendente&quot;: quando os selos forem aplicados, utilizar a opcao &quot;Baixa de Selos Pendentes&quot; para registra-los, eliminando-se a pendencia (art.3,  3 Provimento 15/2008). " for="movimentacao_selo_pendente">Selos Pendentes</label>
+            <div class="controls">
+            <select class=" form-control" name="movimentacao[selo_pendente]" id="movimentacao_selo_pendente" disabled=""><option value="true">SIM</option>
+            <option value="false">NÃO</option></select>
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6 tipo_ato_1001_1003" style="display: none;">
+            <label class="control-label" data-original-title="Tipo de Distribuicao usada na Movimentacao dos Atos. Somente para atos dos codigos 001001 e 001003." for="movimentacao_distribuicao_eletronica">Dist. Eletrônica *</label>
+            <div class="controls">
+            <select class="form-control" name="movimentacao[distribuicao_eletronica]" id="movimentacao_distribuicao_eletronica"><option value=""></option>
+            <option value="true">SIM</option>
+            <option value="false">NÃO</option></select>
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6 tipo_ato_6001" style="display: none;">
+            <label class="control-label" for="movimentacao_duteletronico" data-original-title="" title="">Dut Eletrônico *</label>
+            <div class="controls">
+            <select class="form-control" name="movimentacao[duteletronico]" id="movimentacao_duteletronico"><option value=""></option>
+            <option value="true">SIM</option>
+            <option value="false">NÃO</option></select>
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6 tipo_ato_2001" style="display: none;">
+            <label class="control-label" for="movimentacao_rec_firma_autenticidade" data-original-title="" title="">Rec de Firma por Autenticidade? *</label>
+            <div class="controls">
+            <select class="form-control" name="movimentacao[rec_firma_autenticidade]" id="movimentacao_rec_firma_autenticidade"><option value=""></option>
+            <option value="true">SIM</option>
+            <option value="false">NÃO</option></select>
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6 tipo_ato_2001" style="display: none;">
+            <label class="control-label" data-original-title="Apostilamento" for="movimentacao_apostilamento">Apostilamento *</label>
+            <div class="controls">
+            <select class="form-control" name="movimentacao[apostilamento]" id="movimentacao_apostilamento"><option value=""></option>
+            <option value="true">SIM</option>
+            <option value="false">NÃO</option></select>
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6 tipo_ato_2007_2017" style="display: none;">
+            <label class="control-label" data-original-title="Ata Notarial" for="movimentacao_ata_notarial">Ata Notarial *</label>
+            <div class="controls">
+            <select class="form-control" name="movimentacao[ata_notarial]" id="movimentacao_ata_notarial"><option value=""></option>
+            <option value="true">SIM</option>
+            <option value="false">NÃO</option></select>
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6 tipo_ato_5023" style="display: none;">
+            <label class="control-label" data-original-title="Microfilmagem/cópia referente ao protesto de Título" for="movimentacao_microfilmagem_copia_ref">Microfilmagem/cópia</label>
+            <div class="controls">
+            <select class="form-control" name="movimentacao[microfilmagem_copia_ref]" id="movimentacao_microfilmagem_copia_ref"><option value=""></option>
+            <option value="true">SIM</option>
+            <option value="false">NÃO</option></select>
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6 tipo_ato_6012" style="display: none;">
+            <label class="control-label" data-original-title="Diligência em intimação" for="movimentacao_diligencia_intimacao">Diligência em intimação</label>
+            <div class="controls">
+            <select class="form-control" name="movimentacao[diligencia_intimacao]" id="movimentacao_diligencia_intimacao"><option value=""></option>
+            <option value="true">SIM</option>
+            <option value="false">NÃO</option></select>
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6 tipo_ato_5001_6001" style="display: none;">
+            <label class="control-label" data-original-title="Preenchimento obrigatório para o ato 005001, 006001, sendo que, se selecionado a opção &quot;SIM&quot;, o campo:  &quot;Valor do Negocio ou Dívida Relacionada no Período&quot; deixará de ser obrigatório" for="movimentacao_reg_ato_sem_valor">Registro de Ato SEM Valor Econômico</label>
+            <div class="controls">
+            <select class="form-control" name="movimentacao[reg_ato_sem_valor]" id="movimentacao_reg_ato_sem_valor"><option value=""></option>
+            <option value="true">SIM</option>
+            <option value="false">NÃO</option></select>
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6 tipo_ato_5013" style="display: none;">
+            <label class="control-label" data-original-title="Preenchimento obrigatório para o ato 005013, sendo que, se selecionado a opção &quot;SIM&quot;, o campo:  &quot;Valor do Negocio ou Dívida Relacionada no Período&quot; deixará de ser obrigatório" for="movimentacao_averb_ato_sem_valor">Averbação SEM Valor Econômico?</label>
+            <div class="controls">
+            <select class="form-control" name="movimentacao[averb_ato_sem_valor]" id="movimentacao_averb_ato_sem_valor"><option value=""></option>
+            <option value="true">SIM</option>
+            <option value="false">NÃO</option></select>
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6 tipo_ato_4014_4015" style="display: none;">
+            <label class="control-label" data-original-title="2ª via de registro materializada via CRC ?" for="movimentacao_segunda_via_crc">2ª via de reg. mat. via CRC?</label>
+            <div class="controls">
+            <select class="form-control" name="movimentacao[segunda_via_crc]" id="movimentacao_segunda_via_crc"><option value=""></option>
+            <option value="true">SIM</option>
+            <option value="false">NÃO</option></select>
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6 tipo_ato_1001_1007_3001_a_3006_3011_a_3016_5023" style="display: none;">
+            <label class="control-label" data-original-title="Preenchimento obrigatório para os atos: 001001 - 001007 - 003001 a 003006 - 003011 a 003016, (incluídos os casos “selos 99”). Se selecionado o “SIM”, os valores cobrados deverão ser zerados." for="movimentacao_custas_postergadas_entrada_titulo">Custas Postergadas Entrada Título *</label>
+            <div class="controls">
+            <select class="form-control" name="movimentacao[custas_postergadas_entrada_titulo]" id="movimentacao_custas_postergadas_entrada_titulo"><option value=""></option>
+            <option value="true">SIM</option>
+            <option value="false">NÃO</option></select>
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6 tipo_ato_1001_1003_1006_1007_3001_a_3006_3009_a_3019_5023_6012" style="display: none;">
+            <label class="control-label" data-original-title="Preenchimento obrigatório para os atos: 001001 - 001003 - 001006 - 001007 - DO 003001 a 003019 (COM EXCEÇÃO DOS CÓDIGOS: 003007 - 003008) - 005023 - 006012, (incluídos os casos “selos 99”). Se selecionado o “SIM”, os valores cobrados deverão ser zerados." for="movimentacao_custas_postergadas_quitacao_devedor">Custas Postergadas Quitação Devedor *</label>
+            <div class="controls">
+            <select class="form-control" name="movimentacao[custas_postergadas_quitacao_devedor]" id="movimentacao_custas_postergadas_quitacao_devedor"><option value=""></option>
+            <option value="true">SIM</option>
+            <option value="false">NÃO</option></select>
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6 tipo_ato_2019_7020_7021" style="display: none;">
+            <label class="control-label" data-original-title="Preenchimento obrigatório para os códigos: 002019, 007020 e 007021; sendo que, se selecionado o “sim”, os campos a seguir deixarão de ser obrigatórios: Nº do interv. de folhas do reg. no livro;  Nº do livro do registro realizado;  Nº da matrícula / inscrição." for="movimentacao_certidao_negativa">Certidão Negativa *</label>
+            <div class="controls">
+            <select class="form-control" name="movimentacao[certidao_negativa]" id="movimentacao_certidao_negativa"><option value=""></option>
+            <option value="true">SIM</option>
+            <option value="false">NÃO</option></select>
+            </div>
+            </div>
+            </div>
+            <div class="container-fluid selos">
+            <div class="control-group col-md-4 col-sm-6 selo_fisico" style="display: none;">
+            <label class="control-label" for="movimentacao_serie_inicial">Série Inicial de Selo Utilizada *</label>
+            <div class="controls">
+            <input class=" form-control" onkeyup="this.value=this.value.toUpperCase();" pattern="[A-Z]{2}[0-9]{6}" placeholder="AA999999" maxlength="8" size="8" type="text" value="" name="movimentacao[serie_inicial]" id="movimentacao_serie_inicial">
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6 selo_fisico" style="display: none;">
+            <label class="control-label" for="movimentacao_serie_final">Série Final de Selo Utilizada *</label>
+            <div class="controls">
+            <input class=" form-control" readonly="readonly" type="text" value="" name="movimentacao[serie_final]" id="movimentacao_serie_final">
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6 tipo_ato_2019_5023_5025_6016_7020_7021" style="display: none;">
+            <label class="control-label" for="movimentacao_qtd_folhas_livro">Qtd Folhas do Reg no Livro</label>
+            <div class="controls">
+            <input class="form-control" min="0" max="999" type="number" name="movimentacao[qtd_folhas_livro]" id="movimentacao_qtd_folhas_livro">
+            </div>
+            </div>
+            </div>
+            <!--  -->
+            <div class="container-fluid tipo_ato_7001" style="display: none;">
+            <div class="control-group col-md-4 col-sm-6">
+            <label class="control-label" data-original-title="Preenchimento obrigatório para o código 007001, e quando selecionado “Sim” será obrigatório também o preenchimento do campo: 'Quantidade de quadra" for="movimentacao_registro_quadra_loteamento">Registro quadra loteamento</label>
+            <div class="controls">
+            <select class="form-control" name="movimentacao[registro_quadra_loteamento]" id="movimentacao_registro_quadra_loteamento"><option value=""></option>
+            <option value="true">SIM</option>
+            <option value="false">NÃO</option></select>
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6 div_quantidade_quadra" style="display: none;">
+            <label class="control-label" data-original-title="Preenchimento obrigatório para o código 007001, e quando selecionado “Sim” será obrigatório também o preenchimento do campo: 'Quantidade de quadra" for="movimentacao_quantidade_quadra">Quantidade quadra</label>
+            <div class="controls">
+            <input class="form-control" min="1" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" type="number" name="movimentacao[quantidade_quadra]" id="movimentacao_quantidade_quadra">
+            </div>
+            </div>
+            </div>
+            <div class="container-fluid">
+            <div class="control-group col-md-12 col-sm-12" id="matricula_nascimento" style="display: none;">
+            <label class="control-label" for="movimentacao_matricula_nascimento">Matrícula do Nascimento *</label>
+            <div class="controls">
+            <input class="form-control" type="text" value="" name="movimentacao[matricula_nascimento]" id="movimentacao_matricula_nascimento">
+            </div>
+            </div>
+            </div>
+            <div class="container-fluid">
+            <div class="control-group col-md-12 col-sm-12" id="justificativa" style="display: none;">
+            <label class="control-label" for="movimentacao_justificativa">Justificativa *</label>
+            <div class="controls">
+            <textarea class="form-control" rows="8" name="movimentacao[justificativa]" id="movimentacao_justificativa"></textarea>
+            </div>
+            </div>
+            </div>
+            <div class="container-fluid">
+            <div class="control-group col-md-4 col-sm-6">
+            <label class="control-label" for="selo">Selo</label>
+            <div class="controls">
+            <input type="text" name="selo" id="selo"  class="form-control" readonly="readonly">
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            <div class="movimentacao-form col-md-6">
+            <div class="row">
+            <div class="container-fluid valor_documento" style="display: none;">
+            <div class="control-group col-md-4 col-sm-6">
+            <label class="control-label" data-original-title="Valor do Documento no qual foi realizado o ato (usado para calculo do Emolumento e Fermoju)." for="movimentacao_valor_documento">Valor do Documento *</label>
+            <div class="controls">
+
+            <!-- emolumento-->>
+            <input value="0,00" class="form-control" type="text" name="movimentacao[valor_documento]" id="movimentacao_valor_documento">
+            </div>
+            </div>
+            </div>
+            <div class="container-fluid">
+            <div class="control-group col-md-4 col-sm-6 valor_emolumento">
+            <label class="control-label" data-original-title="Valor do Emolumento cobrado, se o &quot;Tipo de Cobrança&quot; for &quot;LIVRE&quot; pode ser inferior ao tabelado." for="movimentacao_valor_emolumento">Valor do Emolumento *</label>
+            <div class="controls">
+            <input value="0.00" class="form-control" readonly="readonly" type="text" name="movimentacao[valor_emolumento]" id="movimentacao_valor_emolumento">
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6">
+            <div class="desconto_emol" style="display: none;">
+            <label class="control-label" for="movimentacao_desconto_emolumento">Desconto do Emolumento</label>
+            <div class="controls">
+            <input value="0,00" class="form-control" type="text" name="movimentacao[desconto_emolumento]" id="movimentacao_desconto_emolumento">
+            </div>
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6">
+            <label class="control-label" for="total_emolumento">Emol. Total</label>
+            <div class="controls">
+            <input type="text" name="total_emolumento" id="total_emolumento" value="0.00" class="form-control" readonly="readonly">
+            </div>
+            </div>
+            </div>
+
+            <!--Fermoju-->
+            <div class="container-fluid">
+            <div class="control-group col-md-4 col-sm-6">
+            <label class="control-label " for="movimentacao_valor_fermoju">Valor do Fermoju</label>
+            <div class="controls">
+            <input value="0.00" class="form-control" readonly="readonly" type="text" name="movimentacao[valor_fermoju]" id="movimentacao_valor_fermoju">
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6">
+            <div class="desconto_fermoju" style="display: none;">
+            <label class="control-label " for="movimentacao_desconto_fermoju">Desconto do Fermoju</label>
+            <div class="controls">
+            <input value="0.00" class="form-control" type="text" name="movimentacao[desconto_fermoju]" id="movimentacao_desconto_fermoju">
+            </div>
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6">
+            <label class="control-label " for="totalnto_fermoju">Total Fermoju</label>
+            <div class="controls">
+            <input type="text" name="total_fermoju" id="total_fermoju" value="0.00" class="form-control" readonly="readonly">
+            </div>
+            </div>
+            </div>
+            <div class="container-fluid">
+            <div class="control-group col-md-4 col-sm-6">
+            <label class="control-label" for="movimentacao_valor_ferc">Valor do Selo</label>
+            <div class="controls">
+            <input value="0.00" class="form-control" readonly="readonly" type="text" name="movimentacao[valor_ferc]" id="movimentacao_valor_ferc">
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6">
+            <div class="desconto_ferc" style="display: none;">
+            <label class="control-label" for="movimentacao_desconto_ferc">Desconto do Selo</label>
+            <div class="controls">
+            <input value="0,00" class="form-control" type="text" name="movimentacao[desconto_ferc]" id="movimentacao_desconto_ferc">
+            </div>
+            </div>
+            </div>
+            <div class="control-group col-md-4 col-sm-6">
+            <label class="control-label" for="totalsconto_ferc">Total Selo</label>
+            <div class="controls">
+            <input type="text" name="total_ferc" id="total_ferc" value="0.00" readonly="readonly" class="form-control">
+            </div>
+            </div>
+            </div>
+            <div class="container-fluid">
+            <div class="control-group col-md-4"></div>
+            <div class="control-group col-md-4"></div>
+            <div class="control-group col-md-4 col-sm-6">
+            <label class="control-label" for="valor_iss">ISS *</label>
+            <div class="controls">
+            <input type="text" name="valor_iss" id="valor_iss" value="0.00" class="form-control" readonly="readonly">
+            </div>
+            </div>
+            </div>
+            <div class="container-fluid">
+            <div class="control-group col-md-4"></div>
+            <div class="control-group col-md-4"></div>
+            <div class="control-group col-md-4 col-sm-6">
+            <label class="control-label" for="valor_faadep">FAADEP *</label>
+            <div class="controls">
+            <input type="text" name="valor_faadep" id="valor_faadep" value="0.00" class="form-control" readonly="readonly">
+            </div>
+            </div>
+            </div>
+            <div class="container-fluid">
+            <div class="control-group col-md-4"></div>
+            <div class="control-group col-md-4"></div>
+            <div class="control-group col-md-4 col-sm-6">
+            <label class="control-label" for="valor_frmmp">FRMMP *</label>
+            <div class="controls">
+            <input type="text" name="valor_frmmp" id="valor_frmmp" value="0.00" class="form-control" readonly="readonly">
+            </div>
+            </div>
+            </div>
+            <div class="container-fluid">
+            <div class="control-group col-md-4"></div>
+            <div class="control-group col-md-4"></div>
+            <div class="control-group col-md-4 col-sm-6">
+            <label class="control-label" for="valor_total">Total *</label>
+            <div class="controls">
+
+            <span><input type="text" name="valor_total" id="valor_total" value="0.00" class="form-control" readonly="readonly"></span>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            <div class="container-fluid movimentacao-form" id="dados" style="min-height: 300px">
+            <div class="control-group col-md-12">
+            
+        
+            <script src="scripts/sisca.js"></script>
+            </div>
+            </div>
+    </body>
+</html>
